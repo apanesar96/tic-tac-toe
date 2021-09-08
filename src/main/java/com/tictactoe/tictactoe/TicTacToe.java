@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TicTacToeApplication {
+public class TicTacToe {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TicTacToeApplication.class, args);
-	}
-
+    public String playTurn(int x, int y) {
+        return "x..\n...\n...";
+    }
 }
