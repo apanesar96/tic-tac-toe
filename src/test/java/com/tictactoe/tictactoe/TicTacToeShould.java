@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class TicTacToeShould {
-
 	private TicTacToe target;
 
 	@BeforeEach
@@ -18,11 +17,28 @@ class TicTacToeShould {
 
 	@Test
 	void place_x_in_top_left() {
-		assertEquals("x..\n...\n...", target.playTurn(0, 0));
+		//When
+		target.playTurn(0, 0);
+
+		//Then
+		assertEquals("x........", target.printBoard());
 	}
 
 	@Test
-	void name() {
-		
+	void place_x_in_top_right() {
+		//When
+		target.playTurn(2, 0);
+
+		//Then
+		assertEquals("..x......", target.printBoard());
+	}
+
+	@Test
+	void place_x_in_center() {
+		//When
+		target.playTurn(1, 1);
+
+		//Then
+		assertEquals("....x....", target.printBoard());
 	}
 }
