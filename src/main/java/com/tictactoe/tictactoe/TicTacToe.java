@@ -6,20 +6,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TicTacToe {
     char [][] gameBoard = {{'.', '.', '.'}, {'.', '.', '.'}, {'.', '.', '.'}};
+    char activePlayer = 'x';
 
-    public void playTurn(int x, int y) {
-        gameBoard[y][x] = 'x';
+    public String playTurn(int x, int y) throws Exception {
+        if(gameBoard[y][x] != '.') {
+            throw new Exception("That position is already filled.");
+        }
+        gameBoard[y][x] = activePlayer;
+        changeActivePlayer();
+        return printBoard();
     }
 
-    public String printBoard() {
-        String boardOutput = "";
+    private void changeActivePlayer() {
+        activePlayer = activePlayer == 'x' ? 'o' : 'x';
+    }
 
-        for (int i = 0; i < gameBoard.length; i++) {
-            for (int j = 0; j < gameBoard[i].length; j++) {
-                boardOutput += gameBoard[i][j];
+    private String printBoard() {
+        StringBuilder boardOutput = new StringBuilder();
+
+        for (char[] row : gameBoard) {
+            for (char column : row) {
+                boardOutput.append(column);
             }
         }
 
-        return boardOutput;
+        return boardOutput.toString();
     }
 }
