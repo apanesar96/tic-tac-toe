@@ -9,19 +9,20 @@ import java.util.Objects;
 
 @SpringBootApplication
 public class TicTacToe {
-    char [][] gameBoard = {{'.', '.', '.'}, {'.', '.', '.'}, {'.', '.', '.'}};
-    char activePlayer = 'x';
 
-    public String playTurn(int x, int y) throws Exception {
-        if (!isPositionAvailable(x, y)) throw new Exception("That position is already filled.");
+    private char activePlayer = 'x';
+    private Board gameBoard = new Board();
 
-        gameBoard[y][x] = activePlayer;
+    public String playTurn(Position position) throws Exception {
+        if (!isPositionAvailable(position)) throw new Exception("That position is already filled.");
+
+        gameBoard.placeToken(position, activePlayer);
 
         if (isTie()) return "Tie";
 
         changeActivePlayer();
 
-        return printBoard();
+        return gameBoard.printBoard();
     }
 
     private boolean isTie() {
@@ -40,25 +41,12 @@ public class TicTacToe {
         return isTie;
     }
 
-    private boolean isPositionAvailable(int x, int y) {
-       return gameBoard[y][x] == '.';
+    private boolean isPositionAvailable(Position position) {
+       return gameBoard[position.y][position.x] == '.';
     }
 
     private void changeActivePlayer() {
         activePlayer = activePlayer == 'x' ? 'o' : 'x';
     }
-
-    private String printBoard() {
-        StringBuilder boardOutput = new StringBuilder();
-
-        for (char[] row : gameBoard) {
-            for (char column : row) {
-                boardOutput.append(column);
-            }
-        }
-
-        return boardOutput.toString();
-    }
-
 
 }
