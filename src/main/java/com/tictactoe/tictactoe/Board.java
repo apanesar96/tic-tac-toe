@@ -1,6 +1,7 @@
 package com.tictactoe.tictactoe;
 
 import java.lang.invoke.WrongMethodTypeException;
+import java.util.Arrays;
 
 public class Board {
 
@@ -45,4 +46,15 @@ public class Board {
         return gameBoard[position.y][position.x] == '.';
     }
 
+    public boolean isAWin(char activePlayer) {
+        boolean isAWin = false;
+
+        char [] winning = {activePlayer, activePlayer, activePlayer};
+
+        for (char[] row : gameBoard) {
+            if(Arrays.equals(row, winning)) isAWin = true;
+        }
+
+        return isAWin;
+    }
 }

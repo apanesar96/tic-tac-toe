@@ -16,6 +16,8 @@ public class TicTacToe {
     public String playTurn(Position position) throws Exception {
         gameBoard.placeToken(position, activePlayer);
 
+        if(gameBoard.isAWin(activePlayer)) return "Player " + activePlayer + " wins";
+
         if (gameBoard.isTie()) return "Tie";
 
         changeActivePlayer();

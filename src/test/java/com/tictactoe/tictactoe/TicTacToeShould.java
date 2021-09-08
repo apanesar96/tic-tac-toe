@@ -78,4 +78,19 @@ class TicTacToeShould {
 
 		assertEquals("Tie", result);
 	}
+
+	@Test
+	void stop_when_player_one_wins_the_game_with_a_row() throws Exception {
+		//Given
+		target.playTurn(new Position(0,0)); // X
+		target.playTurn(new Position(1,1)); // 0
+		target.playTurn(new Position(1,0)); // X
+		target.playTurn(new Position(2,1)); // 0
+
+		//When
+		String result = target.playTurn(new Position(2,0)); // X
+
+		//Then
+		assertEquals(result, "Player x wins");
+	}
 }
