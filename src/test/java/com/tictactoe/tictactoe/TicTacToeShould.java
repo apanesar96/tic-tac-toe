@@ -58,4 +58,24 @@ class TicTacToeShould {
 
 		assertEquals(exception.getMessage(), "That position is already filled.");
 	}
+
+	@Test
+	void check_if_game_is_a_tie() throws Exception {
+		//given
+		target.playTurn(0,0); // X
+		target.playTurn(2,0); // 0
+		target.playTurn(1,0); // X
+
+		target.playTurn(0,1); // 0
+		target.playTurn(2,1); // X
+		target.playTurn(1,1); // 0
+
+		target.playTurn(0,2); // X
+		target.playTurn(2,2); // 0
+
+		// when
+		String result = target.playTurn(1,2);
+
+		assertEquals("Tie", result);
+	}
 }

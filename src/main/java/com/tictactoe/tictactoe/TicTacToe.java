@@ -9,12 +9,15 @@ public class TicTacToe {
     char activePlayer = 'x';
 
     public String playTurn(int x, int y) throws Exception {
-        if(gameBoard[y][x] != '.') {
-            throw new Exception("That position is already filled.");
-        }
+        if (!isPositionAvailable(x, y)) throw new Exception("That position is already filled.");
         gameBoard[y][x] = activePlayer;
         changeActivePlayer();
+
         return printBoard();
+    }
+
+    private boolean isPositionAvailable(int x, int y) {
+       return gameBoard[y][x] == '.';
     }
 
     private void changeActivePlayer() {
@@ -32,4 +35,6 @@ public class TicTacToe {
 
         return boardOutput.toString();
     }
+
+
 }
